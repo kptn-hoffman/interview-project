@@ -1,21 +1,23 @@
 package immutability;
 
-public class ImmutablePerson {
+public final class ImmutablePerson {
 
-    private Integer id;
-    private String firstName;
-    private String lastName;
-    private Age age;
+    private final Integer id;
+    private final String firstName;
+    private final String lastName;
+    private final Age age;
 
-    public ImmutablePerson() {
-
-    }
 
     public ImmutablePerson(Integer id, String firstName, String lastName, Age age) {
         this.id = id;
         this.firstName = firstName;
         this.lastName = lastName;
-        this.age = age;
+
+        this.age = new Age(
+                age.getDay(),
+                age.getMonth(),
+                age.getYear()
+        );
     }
 
     public Integer getId() {
@@ -31,22 +33,10 @@ public class ImmutablePerson {
     }
 
     public Age getAge() {
-        return age;
-    }
-
-    public void setId(Integer id) {
-        this.id = id;
-    }
-
-    public void setFirstName(String firstName) {
-        this.firstName = firstName;
-    }
-
-    public void setLastName(String lastName) {
-        this.lastName = lastName;
-    }
-
-    public void setAge(Age age) {
-        this.age = age;
+        return new Age(
+                age.getDay(),
+                age.getMonth(),
+                age.getYear()
+        );
     }
 }
